@@ -310,6 +310,7 @@
         .gallery-item:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            cursor: zoom-in;
         }
 
         .gallery-placeholder {
@@ -324,6 +325,11 @@
             font-family: 'Caveat', cursive;
             font-size: 2rem;
             font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-placeholder {
+            transform: scale(1.1);
         }
 
         .gallery-info {
@@ -480,6 +486,155 @@
             animation: float 20s ease-in-out infinite;
         }
 
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10001;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 50%;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+            z-index: 10002;
+            font-weight: 300;
+            line-height: 1;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+            z-index: 10002;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        @media (max-width: 768px) {
+            .lightbox-close {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+
+            .lightbox-caption {
+                font-size: 0.9rem;
+                padding: 0.8rem 1.5rem;
+                bottom: 10px;
+            }
+        }
+
+        /* Decorative elements */
+        .paint-splash {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: float 20s ease-in-out infinite;
+        }
+
         .splash-1 {
             top: 10%;
             left: 5%;
@@ -592,7 +747,7 @@
             <p style="margin-top: 1.5rem;">Trabajamos con <strong>escuelas</strong> creando alebrijes monumentales, catrinas decorativas y de formato medio, y banderas de identificación para desfiles. Colaboramos con <strong>artistas y modistas</strong> en la creación de vestuarios únicos: pintamos banderas, vestidos de chinelos, diseñamos atuendos para carnaval con ilustraciones personalizadas, y elaboramos accesorios como penachos y máscaras artesanales. También pintamos <strong>estandartes religiosos</strong> para diversas comunidades de fe, desde la iglesia católica hasta la iglesia espiritualista.</p>
             <p style="margin-top: 1.5rem;">Para <strong>clientes que buscan algo especial</strong>, ofrecemos invitaciones y recuerdos completamente hechos y pintados a mano, cada uno con un toque único y personal.</p>
             <p style="margin-top: 1.5rem;"><strong>Pedidos personalizados:</strong> Nos adaptamos a tus ideas y presupuesto, transformando tu visión en arte tangible.</p>
-            <p style="margin-top: 2rem; font-size: 0.85rem; opacity: 0.7; font-style: italic;">Dirigido por la Maestra Ma. Alejandra, egresada de la carrera de Antropología en la Escuela Nacional de Antropología e Historia (ENAH). Actualmente imparte talleres de pintura y danza folclórica, compartiendo su pasión por el arte y la cultura mexicana.</p>
+            <p style="margin-top: 2rem; font-size: 0.85rem; opacity: 0.7; font-style: italic;">Dirigido por la Maestra Ma. Alejandra, con formación en Antropología (ENAH) y experiencia en talleres de pintura y danza folclórica.</p>
         </div>
     </section>
 
@@ -638,8 +793,36 @@
             <div class="gallery-item">
                 <div class="gallery-placeholder">Pintura 6</div>
                 <div class="gallery-info">
-                    <h3>Mural Decorativo</h3>
-                    <p>Arte mural · 2024</p>
+                    <h3>Retrato Personalizado</h3>
+                    <p>Óleo · 2024</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">Pintura 7</div>
+                <div class="gallery-info">
+                    <h3>Vestido de Chinelo</h3>
+                    <p>Pintura textil · 2024</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">Pintura 8</div>
+                <div class="gallery-info">
+                    <h3>Alebrije Monumental</h3>
+                    <p>Arte folklórico · 2024</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">Pintura 9</div>
+                <div class="gallery-info">
+                    <h3>Estandarte Religioso</h3>
+                    <p>Pintura ceremonial · 2024</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">Pintura 10</div>
+                <div class="gallery-info">
+                    <h3>Catrina Decorativa</h3>
+                    <p>Arte tradicional · 2024</p>
                 </div>
             </div>
         </div>
@@ -685,6 +868,17 @@
             </div>
         </div>
     </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">‹</button>
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-image" id="lightbox-img">
+        </div>
+        <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">›</button>
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -736,6 +930,83 @@
             const hero = document.querySelector('.hero');
             if (hero && scrolled < window.innerHeight) {
                 hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Lightbox functionality
+        let currentImageIndex = 0;
+        const galleryItems = [];
+
+        // Initialize gallery items
+        document.querySelectorAll('.gallery-item').forEach((item, index) => {
+            const placeholder = item.querySelector('.gallery-placeholder');
+            const info = item.querySelector('.gallery-info');
+            const title = info.querySelector('h3').textContent;
+            const description = info.querySelector('p').textContent;
+            
+            galleryItems.push({
+                src: placeholder.style.backgroundImage || 'placeholder',
+                title: title,
+                description: description,
+                element: placeholder
+            });
+
+            item.addEventListener('click', () => {
+                openLightbox(index);
+            });
+        });
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            const caption = document.getElementById('lightbox-caption');
+            
+            // For now, use placeholder color as background until real images are added
+            const item = galleryItems[index];
+            img.src = item.element.style.backgroundImage ? 
+                      item.element.style.backgroundImage.slice(5, -2) : 
+                      'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800"><rect width="800" height="800" fill="%2389B5E2"/><text x="50%" y="50%" font-size="48" fill="white" text-anchor="middle" dy=".3em">' + item.title + '</text></svg>';
+            
+            caption.innerHTML = `<strong>${item.title}</strong><br>${item.description}`;
+            
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            
+            if (currentImageIndex < 0) {
+                currentImageIndex = galleryItems.length - 1;
+            } else if (currentImageIndex >= galleryItems.length) {
+                currentImageIndex = 0;
+            }
+            
+            openLightbox(currentImageIndex);
+        }
+
+        // Close lightbox on background click
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        });
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowLeft') {
+                changeImage(-1);
+            } else if (e.key === 'ArrowRight') {
+                changeImage(1);
             }
         });
     </script>

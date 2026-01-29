@@ -262,6 +262,18 @@
             border-radius: 5px;
         }
 
+        /* Center ONLY the gallery title */
+        .gallery .section-title {
+            display: block;
+            text-align: center;
+        }
+
+        .gallery .section-title::after {
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+        }
+
         .about-content {
             max-width: 800px;
             font-size: 1.2rem;
@@ -778,7 +790,7 @@
                 <img src="galeria-08.png" alt="Libretas Personalizadas" class="gallery-placeholder">
                 <div class="gallery-info">
                     <h3>Libretas Personalizadas</h3>
-                    <p>Forrado artesanal · Diseños únicos</p>
+                    <p>Forrado a mano · Diseños a tu gusto</p>
                 </div>
             </div>
             <div class="gallery-item" data-img="galeria-07.png">
@@ -809,7 +821,7 @@
                     </svg>
                     Dirección
                 </h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Calle+Tierra+Blanca+8,+Sagrado+Corazón,+56860+San+Matías+Cuijingo,+Méx." target="_blank" style="display: block; color: white; text-decoration: none; font-size: 1.2rem; font-weight: 500; line-height: 1.8;">Calle Tierra Blanca 8, Sagrado Corazón<br>56860 San Matías Cuijingo, Méx.</a>
+                <a href="https://www.google.com/maps?q=19.085375,-98.853789" target="_blank" style="display: block; color: white; text-decoration: none; font-size: 1.2rem; font-weight: 500; line-height: 1.8;">Calle Tierra Blanca 8, Sagrado Corazón<br>56860 San Matías Cuijingo, Méx.</a>
             </div>
             <div class="contact-item">
                 <h3>
@@ -831,8 +843,6 @@
                     Redes Sociales
                 </h3>
                 <div class="social-links">
-                    <a href="https://www.facebook.com/pincelidadesmichi" target="_blank">Facebook</a>
-                    <a href="https://www.instagram.com/pincelidadesmichi" target="_blank">Instagram</a>
                     <a href="https://www.tiktok.com/@pincelidadesmichi" target="_blank">TikTok</a>
                 </div>
             </div>

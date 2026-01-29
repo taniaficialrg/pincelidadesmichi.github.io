@@ -317,19 +317,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #89B5E2 0%, #B5A6D3 50%, #E8938D 100%);
-            color: white;
-            font-family: 'Caveat', cursive;
-            font-size: 2rem;
-            font-weight: 700;
+            display: block;
             transition: var(--transition);
-        }
-
-        .gallery-item:hover .gallery-placeholder {
-            transform: scale(1.1);
         }
 
         .gallery-info {
@@ -755,74 +744,74 @@
     <section id="galeria" class="gallery">
         <h2 class="section-title">Galería de Trabajos</h2>
         <div class="gallery-grid">
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Pintura 1</div>
+            <div class="gallery-item" data-img="galeria-02.jpg">
+                <img src="galeria-02.jpg" alt="Vestido Quetzalcóatl" class="gallery-placeholder">
                 <div class="gallery-info">
-                    <h3>Arte Personalizado</h3>
-                    <p>Pintura acrílica · 2024</p>
+                    <h3>Vestido Quetzalcóatl</h3>
+                    <p>Pintura textil · Grecas turquesa</p>
                 </div>
             </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Pintura 2</div>
+            <div class="gallery-item" data-img="galeria-10.jpg">
+                <img src="galeria-10.jpg" alt="Vestido Princesa Azteca" class="gallery-placeholder">
                 <div class="gallery-info">
-                    <h3>Taller Creativo</h3>
-                    <p>Acuarela · 2024</p>
+                    <h3>Vestido Princesa Azteca</h3>
+                    <p>Pintura textil · Iconografía maya</p>
                 </div>
             </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Pintura 3</div>
+            <div class="gallery-item" data-img="galeria-01.jpg">
+                <img src="galeria-01.jpg" alt="Dioses del Sol y la Luna" class="gallery-placeholder">
                 <div class="gallery-info">
-                    <h3>Proyecto Especial</h3>
-                    <p>Técnica mixta · 2024</p>
+                    <h3>Nanahuatzin y Tecciztécatl</h3>
+                    <p>Pintura textil · Dioses aztecas</p>
                 </div>
             </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Pintura 4</div>
+            <div class="gallery-item" data-img="galeria-03.png">
+                <img src="galeria-03.png" alt="Diosa Maya Ixchel" class="gallery-placeholder">
                 <div class="gallery-info">
-                    <h3>Arte en Tela</h3>
-                    <p>Pintura textil · 2024</p>
+                    <h3>Diosa Maya Ixchel</h3>
+                    <p>Pintura textil · Iconografía maya</p>
                 </div>
             </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Pintura 5</div>
+            <div class="gallery-item" data-img="galeria-06.png">
+                <img src="galeria-06.png" alt="Mazorca con Iconografía Maya" class="gallery-placeholder">
                 <div class="gallery-info">
-                    <h3>Ilustración</h3>
-                    <p>Dibujo y color · 2024</p>
+                    <h3>Mazorca Ceremonial</h3>
+                    <p>Pintura textil · Símbolos mayas</p>
                 </div>
             </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Pintura 6</div>
+            <div class="gallery-item" data-img="galeria-04.png">
+                <img src="galeria-04.png" alt="Estandarte Religioso" class="gallery-placeholder">
                 <div class="gallery-info">
-                    <h3>Retrato Personalizado</h3>
-                    <p>Óleo · 2024</p>
+                    <h3>Estandarte Luz de Luz</h3>
+                    <p>Pintura ceremonial · Templo Espiritualista</p>
                 </div>
             </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Pintura 7</div>
+            <div class="gallery-item" data-img="galeria-05.png">
+                <img src="galeria-05.png" alt="Bandera de Chinelo" class="gallery-placeholder">
                 <div class="gallery-info">
-                    <h3>Vestido de Chinelo</h3>
-                    <p>Pintura textil · 2024</p>
+                    <h3>Bandera Herencia y Tradición</h3>
+                    <p>Pintura textil · Comparza de chinelos</p>
                 </div>
             </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Pintura 8</div>
+            <div class="gallery-item" data-img="galeria-08.png">
+                <img src="galeria-08.png" alt="Bandera Escuela" class="gallery-placeholder">
                 <div class="gallery-info">
-                    <h3>Alebrije Monumental</h3>
-                    <p>Arte folklórico · 2024</p>
+                    <h3>Bandera Escuela José Ma. Morelos</h3>
+                    <p>Pintura textil · Identificación escolar</p>
                 </div>
             </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Pintura 9</div>
+            <div class="gallery-item" data-img="galeria-07.png">
+                <img src="galeria-07.png" alt="Libretas Personalizadas" class="gallery-placeholder">
                 <div class="gallery-info">
-                    <h3>Estandarte Religioso</h3>
-                    <p>Pintura ceremonial · 2024</p>
+                    <h3>Libretas Personalizadas</h3>
+                    <p>Forrado artesanal · Diseños únicos</p>
                 </div>
             </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Pintura 10</div>
+            <div class="gallery-item" data-img="galeria-09.jpg">
+                <img src="galeria-09.jpg" alt="Invitación Virgen de Guadalupe" class="gallery-placeholder">
                 <div class="gallery-info">
-                    <h3>Catrina Decorativa</h3>
-                    <p>Arte tradicional · 2024</p>
+                    <h3>Invitación Primera Comunión</h3>
+                    <p>Pintura a mano · Virgen de Guadalupe</p>
                 </div>
             </div>
         </div>
@@ -939,16 +928,16 @@
 
         // Initialize gallery items
         document.querySelectorAll('.gallery-item').forEach((item, index) => {
-            const placeholder = item.querySelector('.gallery-placeholder');
+            const img = item.querySelector('.gallery-placeholder');
             const info = item.querySelector('.gallery-info');
             const title = info.querySelector('h3').textContent;
             const description = info.querySelector('p').textContent;
+            const imageSrc = item.getAttribute('data-img');
             
             galleryItems.push({
-                src: placeholder.style.backgroundImage || 'placeholder',
+                src: imageSrc,
                 title: title,
-                description: description,
-                element: placeholder
+                description: description
             });
 
             item.addEventListener('click', () => {
@@ -962,11 +951,9 @@
             const img = document.getElementById('lightbox-img');
             const caption = document.getElementById('lightbox-caption');
             
-            // For now, use placeholder color as background until real images are added
             const item = galleryItems[index];
-            img.src = item.element.style.backgroundImage ? 
-                      item.element.style.backgroundImage.slice(5, -2) : 
-                      'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800"><rect width="800" height="800" fill="%2389B5E2"/><text x="50%" y="50%" font-size="48" fill="white" text-anchor="middle" dy=".3em">' + item.title + '</text></svg>';
+            img.src = item.src;
+            img.alt = item.title;
             
             caption.innerHTML = `<strong>${item.title}</strong><br>${item.description}`;
             

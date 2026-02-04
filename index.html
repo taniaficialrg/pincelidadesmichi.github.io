@@ -580,6 +580,22 @@
             right: 20px;
         }
 
+        .lightbox-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            font-size: 1rem;
+            text-align: center;
+            max-width: 85%;
+            line-height: 1.6;
+            display: none;
+        }
+
         @media (max-width: 768px) {
             .lightbox-close {
                 top: 10px;
@@ -601,6 +617,13 @@
 
             .lightbox-next {
                 right: 10px;
+            }
+
+            .lightbox-caption {
+                font-size: 0.85rem;
+                padding: 0.8rem 1.2rem;
+                bottom: 10px;
+                max-width: 90%;
             }
         }
 
@@ -807,6 +830,20 @@
                     <p>Pintura a mano · Virgen de Guadalupe</p>
                 </div>
             </div>
+            <div class="gallery-item" data-img="galeria-11.jpg">
+                <img src="galeria-11.jpg" alt="Traje Mariposa Monarca" class="gallery-placeholder">
+                <div class="gallery-info">
+                    <h3>Traje Mariposa Monarca</h3>
+                    <p>Día de Muertos · Confección y cartonería</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-img="galeria-12.jpg">
+                <img src="galeria-12.jpg" alt="Amigurumis Stitch" class="gallery-placeholder">
+                <div class="gallery-info">
+                    <h3>Amigurumis a Pedido</h3>
+                    <p>Tejido a mano · Llaveros y recuerdos</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -943,6 +980,31 @@
             const item = galleryItems[index];
             img.src = item.src;
             img.alt = item.title;
+            
+            // Show detailed description only for amigurumi
+            let detailedDescription = item.description;
+            let showCaption = false;
+            
+            if (item.title === 'Amigurumis a Pedido') {
+                detailedDescription = 'Amigurumis tejidos a mano por la artista @Melissa. Disponibles en venta y también se aceptan pedidos personalizados. Perfectos como llaveros, recuerdos para eventos o invitaciones únicas.';
+                showCaption = true;
+            }
+            
+            // Create or update caption
+            let caption = document.getElementById('lightbox-caption');
+            if (!caption) {
+                caption = document.createElement('div');
+                caption.id = 'lightbox-caption';
+                caption.className = 'lightbox-caption';
+                lightbox.insertBefore(caption, lightbox.querySelector('.lightbox-close'));
+            }
+            
+            if (showCaption) {
+                caption.innerHTML = `<strong>${item.title}</strong><br>${detailedDescription}`;
+                caption.style.display = 'block';
+            } else {
+                caption.style.display = 'none';
+            }
             
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';

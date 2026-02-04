@@ -842,7 +842,7 @@
                 <img src="galeria-12.jpg" alt="Amigurumis Stitch" class="gallery-placeholder">
                 <div class="gallery-info">
                     <h3>Amigurumis a Pedido</h3>
-                    <p>Tejido a mano · Llaveros y recuerdos</p>
+                    <p>Tejido a mano · Llaveros y recuerdos · <a href="https://vt.tiktok.com/ZSanRmjvA/" target="_blank" style="color: #E91E8C; font-weight: 600; text-decoration: none; border-bottom: 2px solid #E91E8C;">Ver más</a></p>
                 </div>
             </div>
         </div>
@@ -981,31 +981,6 @@
             const item = galleryItems[index];
             img.src = item.src;
             img.alt = item.title;
-            
-            // Show detailed description only for amigurumi
-            let detailedDescription = item.description;
-            let showCaption = false;
-            
-            if (item.title === 'Amigurumis a Pedido') {
-                detailedDescription = 'Amigurumis tejidos a mano por la artista @Melissa. Disponibles en venta y también se aceptan pedidos personalizados. Perfectos como llaveros, recuerdos para eventos o invitaciones únicas.';
-                showCaption = true;
-            }
-            
-            // Create or update caption
-            let caption = document.getElementById('lightbox-caption');
-            if (!caption) {
-                caption = document.createElement('div');
-                caption.id = 'lightbox-caption';
-                caption.className = 'lightbox-caption';
-                lightbox.insertBefore(caption, lightbox.querySelector('.lightbox-close'));
-            }
-            
-            if (showCaption) {
-                caption.innerHTML = `<strong>${item.title}</strong><br>${detailedDescription}`;
-                caption.style.display = 'block';
-            } else {
-                caption.style.display = 'none';
-            }
             
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';

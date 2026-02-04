@@ -95,32 +95,37 @@
 
         nav {
             display: flex;
-            gap: 0.3rem;
-            flex-wrap: wrap;
+            gap: 2rem;
         }
 
         nav a {
-            color: #9D8289;
-            background: #FEE8F0;
-            border: 2px dashed #9D8289;
+            color: var(--color-dark);
             text-decoration: none;
-            font-size: 0.75rem;
+            font-size: 1rem;
             font-weight: 600;
             position: relative;
             transition: var(--transition);
-            padding: 0.35rem 0.7rem;
-            border-radius: 8px;
-            white-space: nowrap;
+            padding: 0.5rem 0;
         }
 
         nav a::after {
-            display: none;
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+            transition: var(--transition);
+            border-radius: 3px;
         }
 
         nav a:hover {
-            color: var(--color-secondary);
-            background: #FFD4E5;
-            border-color: var(--color-secondary);
+            color: var(--color-primary);
+        }
+
+        nav a:hover::after {
+            width: 100%;
         }
 
         /* Hero Section - CENTRADO */
@@ -291,81 +296,74 @@
 
         .gallery-item {
             position: relative;
+            aspect-ratio: 1;
             background: white;
             overflow: hidden;
             cursor: pointer;
             transition: var(--transition);
             border-radius: 20px;
             box-shadow: var(--shadow);
-            padding: 12px;
-            aspect-ratio: 1;
         }
 
         .gallery-item::before {
-            display: none;
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 40%, rgba(43, 108, 176, 0.9));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
         }
 
         .gallery-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            cursor: zoom-in;
         }
 
-        /* Zoom icon - bottom right corner in white frame area */
         .gallery-item::after {
             content: '';
             position: absolute;
-            bottom: 75px;
-            right: 15px;
-            width: 40px;
-            height: 40px;
-            background: rgba(233, 30, 140, 0.95);
-            border-radius: 50%;
+            top: 15px;
+            left: 15px;
+            width: 35px;
+            height: 35px;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3Cline x1='11' y1='8' x2='11' y2='14'/%3E%3Cline x1='8' y1='11' x2='14' y2='11'/%3E%3C/svg%3E");
-            background-size: 22px;
-            background-position: center;
+            background-size: contain;
             background-repeat: no-repeat;
+            opacity: 0.65;
             z-index: 3;
             pointer-events: none;
             transition: var(--transition);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
         }
 
         .gallery-item:hover::after {
-            background-color: rgba(233, 30, 140, 1);
-            transform: scale(1.08);
+            opacity: 1;
+            transform: scale(1.15);
         }
 
         .gallery-placeholder {
             width: 100%;
-            aspect-ratio: 1;
+            height: 100%;
             object-fit: cover;
             display: block;
-            border-radius: 12px;
-            margin-bottom: 0.8rem;
+            transition: var(--transition);
         }
 
         .gallery-info {
-            position: static;
-            padding: 0 0.3rem;
-            color: var(--color-dark);
-            background: transparent;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            color: white;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
             z-index: 2;
-        }
-
-        .gallery-info h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-            color: var(--color-primary);
-            font-family: 'Caveat', cursive;
-        }
-
-        .gallery-info p {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .gallery-item:hover .gallery-info h3 {
-            color: var(--color-secondary);
+            transition: var(--transition);
         }
 
         .gallery-item:hover .gallery-info {
@@ -383,85 +381,6 @@
             font-size: 1rem;
             opacity: 0.95;
             font-weight: 500;
-        }
-
-        /* En Stock Carousel Section */
-        .stock {
-            padding: 2.5rem 5%;
-            background: linear-gradient(135deg, #FFF9F0 0%, #FFF5E8 100%);
-        }
-
-        .carousel-wrapper {
-            position: relative;
-            max-width: 100%;
-            overflow: hidden;
-            padding: 0 60px;
-        }
-
-        .carousel-container {
-            display: flex;
-            gap: 1.5rem;
-            transition: transform 0.5s ease;
-            padding: 1rem 0;
-        }
-
-        .carousel-item {
-            min-width: 220px;
-            flex-shrink: 0;
-            text-align: center;
-        }
-
-        .carousel-item img {
-            width: 220px;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .carousel-item h3 {
-            font-family: 'Caveat', cursive;
-            font-size: 1.4rem;
-            color: var(--color-primary);
-            margin: 0.7rem 0 0.2rem;
-        }
-
-        .carousel-item .price {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--color-secondary);
-        }
-
-        .carousel-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--color-primary);
-            border: none;
-            color: white;
-            font-size: 1.8rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            z-index: 10;
-        }
-
-        .carousel-nav:hover {
-            background: #1E5A8E;
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .carousel-prev {
-            left: 5px;
-        }
-
-        .carousel-next {
-            right: 5px;
         }
 
         /* Contact Section */
@@ -719,61 +638,42 @@
         /* Responsive */
         @media (max-width: 768px) {
             header {
-                padding: 0.5rem 4%;
+                padding: 0.6rem 5%;
                 flex-direction: column;
-                gap: 0.5rem;
+                gap: 0.4rem;
             }
 
             .logo-img {
-                height: 70px;
-                max-width: 90%;
+                height: 160px;
+                max-width: 480px;
             }
 
             nav {
-                gap: 0.3rem;
+                gap: 1rem;
             }
 
             nav a {
-                font-size: 0.7rem;
-                padding: 0.3rem 0.6rem;
+                font-size: 0.9rem;
             }
 
             .hero {
-                padding: 2rem 5% 3rem;
-                min-height: 80vh;
+                padding: 15rem 5% 4rem;
             }
 
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 3rem;
             }
 
             .hero .subtitle {
-                font-size: 1rem;
+                font-size: 1.2rem;
             }
 
             .hero p {
-                font-size: 0.95rem;
+                font-size: 1.1rem;
             }
 
-            .cta-button {
-                font-size: 1rem;
-                padding: 0.9rem 2rem;
-            }
-
-            section {
-                padding: 2.5rem 5%;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .about-content {
-                font-size: 0.95rem;
-            }
-
-            .gallery {
-                padding: 2.5rem 5%;
+            .about, .gallery, .contact {
+                padding: 5rem 5%;
             }
 
             .gallery-grid {
@@ -921,51 +821,6 @@
                     <p>Tejido a mano · Llaveros y recuerdos · <a href="https://vt.tiktok.com/ZSanRmjvA/" target="_blank" style="color: #E91E8C; font-weight: 600; text-decoration: none; border-bottom: 2px solid #E91E8C;">Ver más</a></p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- En Stock Section -->
-    <section id="stock" class="stock">
-        <h2 class="section-title">Disponible Ahora</h2>
-        <p style="text-align: left; max-width: 700px; margin: -1rem 0 2.5rem; font-size: 1rem; opacity: 0.85;">
-            Productos listos para llevar. Encuentra tu favorito y contáctanos para adquirirlo.
-        </p>
-        
-        <div class="carousel-wrapper">
-            <button class="carousel-nav carousel-prev" onclick="moveCarousel(-1)">‹</button>
-            <div class="carousel-container" id="carouselContainer">
-                <div class="carousel-item">
-                    <img src="galeria-12.jpg" alt="Amigurumi Stitch">
-                    <h3>Amigurumi Stitch</h3>
-                    <div class="price">$180 MXN</div>
-                </div>
-                <div class="carousel-item">
-                    <img src="galeria-11.jpg" alt="Traje Mariposa">
-                    <h3>Traje Mariposa Monarca</h3>
-                    <div class="price">$2,500 MXN</div>
-                </div>
-                <div class="carousel-item">
-                    <img src="galeria-03.png" alt="Vestido Ixchel">
-                    <h3>Vestido Diosa Ixchel</h3>
-                    <div class="price">$1,800 MXN</div>
-                </div>
-                <div class="carousel-item">
-                    <img src="galeria-09.jpg" alt="Invitación">
-                    <h3>Invitación Virgencita</h3>
-                    <div class="price">$80 MXN</div>
-                </div>
-                <div class="carousel-item">
-                    <img src="galeria-08.png" alt="Libreta">
-                    <h3>Libreta Personalizada</h3>
-                    <div class="price">$120 MXN</div>
-                </div>
-                <div class="carousel-item">
-                    <img src="galeria-07.png" alt="Bandera">
-                    <h3>Bandera Escolar</h3>
-                    <div class="price">$800 MXN</div>
-                </div>
-            </div>
-            <button class="carousel-nav carousel-next" onclick="moveCarousel(1)">›</button>
         </div>
     </section>
 
@@ -1124,25 +979,6 @@
                 closeLightbox();
             }
         });
-
-        // Carousel functionality
-        let currentPosition = 0;
-        const container = document.getElementById('carouselContainer');
-        
-        function moveCarousel(direction) {
-            if (!container) return;
-            
-            const items = document.querySelectorAll('.carousel-item');
-            const itemWidth = 220 + 24; // width + gap
-            const maxScroll = -(items.length * itemWidth - container.parentElement.offsetWidth + 120);
-            
-            currentPosition += direction * itemWidth;
-            
-            if (currentPosition > 0) currentPosition = 0;
-            if (currentPosition < maxScroll) currentPosition = maxScroll;
-            
-            container.style.transform = `translateX(${currentPosition}px)`;
-        }
     </script>
 </body>
 </html>

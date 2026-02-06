@@ -95,8 +95,8 @@
 
         nav {
             display: flex;
-            gap: 0.25rem;
-            flex-wrap: wrap;
+            gap: 0.15rem;
+            flex-wrap: nowrap;
             justify-content: center;
         }
 
@@ -105,12 +105,12 @@
             background: #FEE8F0;
             border: 2px dashed #9D8289;
             text-decoration: none;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             font-weight: 600;
             position: relative;
             transition: var(--transition);
-            padding: 0.3rem 0.6rem;
-            border-radius: 8px;
+            padding: 0.2rem 0.45rem;
+            border-radius: 6px;
             white-space: nowrap;
         }
 
@@ -385,23 +385,37 @@
             background: linear-gradient(135deg, #FFF9F0 0%, #FFF5E8 100%);
         }
 
+        .stock .section-title {
+            text-align: center;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stock .section-title::after {
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 500px;
+        }
+
         .carousel-wrapper {
             position: relative;
             max-width: 100%;
             overflow: hidden;
-            padding: 0 65px;
+            padding: 0;
         }
 
         .carousel-container {
             display: flex;
             gap: 1.5rem;
             transition: transform 0.5s ease;
-            padding: 1rem 0;
-            justify-content: flex-start;
+            padding: 1rem 60px;
         }
 
         .carousel-item {
             min-width: 220px;
+            max-width: 220px;
             flex-shrink: 0;
             text-align: center;
         }
@@ -452,11 +466,11 @@
         }
 
         .carousel-prev {
-            left: 5px;
+            left: 10px;
         }
 
         .carousel-next {
-            right: 5px;
+            right: 10px;
         }
 
         /* Contact Section */
@@ -902,8 +916,8 @@
 
     <!-- En Stock Section -->
     <section id="stock" class="stock">
-        <h2 class="section-title">Disponible Ahora</h2>
-        <p style="text-align: left; max-width: 700px; margin: -1rem 0 2.5rem; font-size: 1rem; opacity: 0.85;">
+        <h2 class="section-title" style="text-align: center;">Disponible Ahora</h2>
+        <p style="text-align: center; max-width: 700px; margin: -1rem auto 2.5rem; font-size: 1rem; opacity: 0.85;">
             Productos listos para llevar. Encuentra tu favorito y contáctanos para adquirirlo.
         </p>
         
@@ -1101,30 +1115,41 @@
             }
         });
 
-        // Carousel functionality - infinite loop
-        let currentPosition = 0;
+        // Carousel functionality - infinite loop, starts at second image, centered
         const container = document.getElementById('carouselContainer');
+        const itemWidth = 220 + 24; // width + gap (1.5rem = 24px)
+        
+        // Calculate center position for mobile (show one image centered)
+        const screenWidth = window.innerWidth;
+        const centerOffset = (screenWidth - 220) / 2 - 60; // 60 is container padding
+        let currentPosition = centerOffset - itemWidth; // Start at second image
+        
+        // Set initial position on load
+        window.addEventListener('DOMContentLoaded', () => {
+            if (container) {
+                container.style.transform = `translateX(${currentPosition}px)`;
+            }
+        });
         
         function moveCarousel(direction) {
             if (!container) return;
             
             const items = document.querySelectorAll('.carousel-item');
-            const itemWidth = 220 + 24; // width + gap
             const totalItems = items.length;
             
             // Reverse direction (right arrow goes left, left arrow goes right)
             currentPosition -= direction * itemWidth;
             
             // Calculate bounds
-            const maxScroll = -(totalItems * itemWidth - container.parentElement.offsetWidth + 130);
+            const maxScroll = centerOffset - (totalItems * itemWidth);
             
             // Infinite loop logic
-            if (currentPosition > 0) {
+            if (currentPosition > centerOffset) {
                 // If going past the beginning, jump to the end
-                currentPosition = maxScroll;
+                currentPosition = maxScroll + itemWidth;
             } else if (currentPosition < maxScroll) {
-                // If going past the end, jump to the beginning
-                currentPosition = 0;
+                // If going past the end, jump to the beginning  
+                currentPosition = centerOffset;
             }
             
             container.style.transform = `translateX(${currentPosition}px)`;

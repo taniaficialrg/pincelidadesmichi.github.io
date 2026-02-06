@@ -404,13 +404,15 @@
             max-width: 100%;
             overflow: hidden;
             padding: 0;
+            width: 100vw;
+            margin: 0 -5%;
         }
 
         .carousel-container {
             display: flex;
             gap: 1.5rem;
             transition: transform 0.5s ease;
-            padding: 1rem 60px;
+            padding: 1rem 0;
         }
 
         .carousel-item {
@@ -1115,24 +1117,29 @@
             }
         });
 
-        // Carousel functionality - infinite loop, properly centered
+        // Carousel functionality - one image centered, infinite loop
         const container = document.getElementById('carouselContainer');
         const itemWidth = 220 + 24; // width + gap
-        let currentIndex = 1; // Start at second image (index 1)
+        let currentIndex = 1; // Start at second image
         
         function updateCarouselPosition() {
             if (!container) return;
             
-            // Calculate offset to center current item
-            const screenWidth = window.innerWidth;
-            const offset = (screenWidth / 2) - (220 / 2); // Center of screen minus half of image
-            const position = offset - (currentIndex * itemWidth) - 60; // Subtract container padding
+            // Center the current image on screen
+            const viewportWidth = window.innerWidth;
+            const imageCenter = (viewportWidth / 2) - (220 / 2);
+            const position = imageCenter - (currentIndex * itemWidth);
             
             container.style.transform = `translateX(${position}px)`;
         }
         
         // Set initial position on load
         window.addEventListener('DOMContentLoaded', () => {
+            updateCarouselPosition();
+        });
+        
+        // Update on window resize
+        window.addEventListener('resize', () => {
             updateCarouselPosition();
         });
         

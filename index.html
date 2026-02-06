@@ -379,7 +379,7 @@
             font-weight: 500;
         }
 
-        /* En Stock Carousel Section */
+        /* En Stock Carousel Section - HORIZONTAL SCROLL DESIGN */
         .stock {
             padding: 2.5rem 5%;
             background: linear-gradient(135deg, #FFF9F0 0%, #FFF5E8 100%);
@@ -399,80 +399,107 @@
             max-width: 500px;
         }
 
+        .stock-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: -1rem auto 2rem;
+            font-size: 1rem;
+            opacity: 0.85;
+        }
+
         .carousel-wrapper {
             position: relative;
-            max-width: 100%;
-            overflow: hidden;
-            padding: 0;
-            width: 100vw;
             margin: 0 -5%;
+            padding: 2rem 0;
         }
 
-        .carousel-container {
+        .carousel-track {
             display: flex;
-            gap: 1.5rem;
-            transition: transform 0.5s ease;
-            padding: 1rem 0;
+            gap: 1.2rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 0.5rem 5% 1.5rem;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
         }
 
-        .carousel-item {
-            min-width: 220px;
-            max-width: 220px;
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .stock-card {
+            min-width: 240px;
+            max-width: 240px;
+            background: white;
+            border-radius: 20px;
+            padding: 1.2rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            transition: var(--transition);
             flex-shrink: 0;
-            text-align: center;
         }
 
-        .carousel-item img {
-            width: 220px;
-            height: 220px;
-            object-fit: cover;
+        .stock-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .stock-image-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #6BA5E7 0%, #4A8AD4 100%);
             border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .carousel-item h3 {
-            font-family: 'Caveat', cursive;
-            font-size: 1.4rem;
-            color: var(--color-primary);
-            margin: 0.7rem 0 0.2rem;
-        }
-
-        .carousel-item .price {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--color-secondary);
-        }
-
-        .carousel-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--color-primary);
-            border: none;
-            color: white;
-            font-size: 1.8rem;
-            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .stock-card h3 {
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .stock-card .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .stock-card .btn-contact {
+            display: block;
+            width: 100%;
+            padding: 0.7rem;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
             transition: var(--transition);
-            z-index: 10;
         }
 
-        .carousel-nav:hover {
-            background: #1E5A8E;
-            transform: translateY(-50%) scale(1.1);
+        .stock-card .btn-contact:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(233, 30, 140, 0.4);
         }
 
-        .carousel-prev {
-            left: 10px;
-        }
-
-        .carousel-next {
-            right: 10px;
+        .scroll-hint {
+            text-align: center;
+            color: var(--color-primary);
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            opacity: 0.7;
         }
 
         /* Contact Section */
@@ -918,46 +945,68 @@
 
     <!-- En Stock Section -->
     <section id="stock" class="stock">
-        <h2 class="section-title" style="text-align: center;">Disponible Ahora</h2>
-        <p style="text-align: center; max-width: 700px; margin: -1rem auto 2.5rem; font-size: 1rem; opacity: 0.85;">
+        <h2 class="section-title">Disponible Ahora</h2>
+        <p class="stock-subtitle">
             Productos listos para llevar. Encuentra tu favorito y contáctanos para adquirirlo.
         </p>
         
         <div class="carousel-wrapper">
-            <button class="carousel-nav carousel-prev" onclick="moveCarousel(-1)">‹</button>
-            <div class="carousel-container" id="carouselContainer">
-                <div class="carousel-item">
-                    <img src="galeria-12.jpg" alt="Sin producto">
+            <div class="carousel-track">
+                <div class="stock-card">
+                    <div class="stock-image-placeholder">
+                        Imagen<br>Próximamente
+                    </div>
                     <h3>Sin producto</h3>
                     <div class="price">$0 MXN</div>
+                    <a href="#contacto" class="btn-contact">Contactar</a>
                 </div>
-                <div class="carousel-item">
-                    <img src="galeria-11.jpg" alt="Sin producto">
+                
+                <div class="stock-card">
+                    <div class="stock-image-placeholder">
+                        Imagen<br>Próximamente
+                    </div>
                     <h3>Sin producto</h3>
                     <div class="price">$0 MXN</div>
+                    <a href="#contacto" class="btn-contact">Contactar</a>
                 </div>
-                <div class="carousel-item">
-                    <img src="galeria-03.png" alt="Sin producto">
+                
+                <div class="stock-card">
+                    <div class="stock-image-placeholder">
+                        Imagen<br>Próximamente
+                    </div>
                     <h3>Sin producto</h3>
                     <div class="price">$0 MXN</div>
+                    <a href="#contacto" class="btn-contact">Contactar</a>
                 </div>
-                <div class="carousel-item">
-                    <img src="galeria-09.jpg" alt="Sin producto">
+                
+                <div class="stock-card">
+                    <div class="stock-image-placeholder">
+                        Imagen<br>Próximamente
+                    </div>
                     <h3>Sin producto</h3>
                     <div class="price">$0 MXN</div>
+                    <a href="#contacto" class="btn-contact">Contactar</a>
                 </div>
-                <div class="carousel-item">
-                    <img src="galeria-08.png" alt="Sin producto">
+                
+                <div class="stock-card">
+                    <div class="stock-image-placeholder">
+                        Imagen<br>Próximamente
+                    </div>
                     <h3>Sin producto</h3>
                     <div class="price">$0 MXN</div>
+                    <a href="#contacto" class="btn-contact">Contactar</a>
                 </div>
-                <div class="carousel-item">
-                    <img src="galeria-07.png" alt="Sin producto">
+                
+                <div class="stock-card">
+                    <div class="stock-image-placeholder">
+                        Imagen<br>Próximamente
+                    </div>
                     <h3>Sin producto</h3>
                     <div class="price">$0 MXN</div>
+                    <a href="#contacto" class="btn-contact">Contactar</a>
                 </div>
             </div>
-            <button class="carousel-nav carousel-next" onclick="moveCarousel(1)">›</button>
+            <p class="scroll-hint">← Desliza para ver más →</p>
         </div>
     </section>
 
@@ -1117,50 +1166,6 @@
             }
         });
 
-        // Carousel functionality - one image centered, infinite loop
-        const container = document.getElementById('carouselContainer');
-        const itemWidth = 220 + 24; // width + gap
-        let currentIndex = 1; // Start at second image
-        
-        function updateCarouselPosition() {
-            if (!container) return;
-            
-            // Center the current image on screen
-            const viewportWidth = window.innerWidth;
-            const imageCenter = (viewportWidth / 2) - (220 / 2);
-            const position = imageCenter - (currentIndex * itemWidth);
-            
-            container.style.transform = `translateX(${position}px)`;
-        }
-        
-        // Set initial position on load
-        window.addEventListener('DOMContentLoaded', () => {
-            updateCarouselPosition();
-        });
-        
-        // Update on window resize
-        window.addEventListener('resize', () => {
-            updateCarouselPosition();
-        });
-        
-        function moveCarousel(direction) {
-            if (!container) return;
-            
-            const items = document.querySelectorAll('.carousel-item');
-            const totalItems = items.length;
-            
-            // Reverse direction (right arrow goes left, left arrow goes right)
-            currentIndex -= direction;
-            
-            // Infinite loop logic
-            if (currentIndex < 0) {
-                currentIndex = totalItems - 1;
-            } else if (currentIndex >= totalItems) {
-                currentIndex = 0;
-            }
-            
-            updateCarouselPosition();
-        }
     </script>
 </body>
 </html>
